@@ -1,6 +1,8 @@
 // src/api/app.ts
 
 import express from 'express';
+import path from 'path';
+import fs from 'fs';
 import helmet from 'helmet';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -23,6 +25,17 @@ export function createApp(): express.Application {
 
   // Middleware de logging
   app.use(loggingMiddleware);
+
+  // Frontend estático (React build si existe, sino public)
+  const reactDistDir = path.join(__dirname, '../../frontend/dist');
+  const publicDir = path.join(__dirname, '../../public');
+  const staticDir = fs.existsSync(reactDistDir) ? reactDistDir : publicDir;
+
+  app.use(express.static(staticDir));
+
+  app.get('/', (_req, res) => {
+    res.sendFile(path.join(staticDir, 'index.html'));
+  });
 
   // Health check
   app.get('/health', (_req, res) => {
