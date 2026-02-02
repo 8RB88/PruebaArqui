@@ -53,6 +53,13 @@ export class PermisosService {
   }
 
   /**
+   * Listar todos los comerciantes
+   */
+  async listarComerciantes(): Promise<Comerciante[]> {
+    return await this.repository.listarComerciantes();
+  }
+
+  /**
    * Crear solicitud de permiso
    */
   async crearSolicitud(

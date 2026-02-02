@@ -14,6 +14,9 @@ export function createPermisosRoutes(): Router {
   const controller = new PermisosController(service);
 
   // Rutas del módulo Permisos
+    router.get('/comerciantes', (req, res) =>
+      controller.listarComerciantes(req, res)
+    );
   router.post('/comerciantes', (req, res) =>
     controller.registrarComerciante(req, res)
   );

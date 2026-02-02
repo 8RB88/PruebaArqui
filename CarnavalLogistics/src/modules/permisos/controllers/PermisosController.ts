@@ -66,6 +66,26 @@ export class PermisosController {
   }
 
   /**
+   * GET /api/permisos/comerciantes
+   * Listar todos los comerciantes
+   */
+  async listarComerciantes(_req: Request, res: Response): Promise<void> {
+    try {
+      const comerciantes = await this.permisosService.listarComerciantes();
+
+      res.status(200).json({
+        total: comerciantes.length,
+        comerciantes,
+      });
+    } catch (error: any) {
+      res.status(500).json({
+        error: 'Error al listar comerciantes',
+        detalle: error.message,
+      });
+    }
+  }
+
+  /**
    * POST /api/permisos/solicitudes
    * Crear solicitud de permiso
    */

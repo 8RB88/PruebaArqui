@@ -12,6 +12,7 @@ export interface IPermisosRepository {
   crearComerciante(comerciante: Comerciante): Promise<Comerciante>;
   obtenerComerciante(id: string): Promise<Comerciante | null>;
   obtenerTodosComerciantes(): Promise<Comerciante[]>;
+  listarComerciantes(): Promise<Comerciante[]>;
   actualizarComerciante(
     id: string,
     comerciante: Partial<Comerciante>
@@ -53,6 +54,10 @@ export class PermisosRepositoryMock implements IPermisosRepository {
   }
 
   async obtenerTodosComerciantes(): Promise<Comerciante[]> {
+    return Array.from(this.comerciantes.values());
+  }
+
+  async listarComerciantes(): Promise<Comerciante[]> {
     return Array.from(this.comerciantes.values());
   }
 
