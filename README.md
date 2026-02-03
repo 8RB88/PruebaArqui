@@ -717,8 +717,4 @@ MIT
 
 ## Autor
 
-Municipalidad - Equipo de Tecnología
-
-## Contacto
-
-Para preguntas o sugerencias, contacta al equipo de desarrollo.
+Roberto BTTE
